@@ -1,3 +1,4 @@
+
 <template>
   <headerComponente :logoTipo="fotoLogo" :alt="appName"/>
   <router-view/>

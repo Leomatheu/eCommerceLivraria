@@ -11,7 +11,31 @@ const routes = [
     path: '/contato',
     name: 'contato',
     component: () => import(/* webpackChunkName: "contato" */ '../views/ContatoView.vue')
+  },
+  {
+    path: '/caneta',
+    name: 'caneta',
+    component: () => import(/* webpackChunkName: "contato" */ '../views/CanetaView.vue')
+  },
+  {
+    path: '/lapis',
+    name: 'lapis',
+    component: () => import(/* webpackChunkName: "contato" */ '../views/LapisView.vue')
+  },
+  {
+    path: '/caderno',
+    name: 'caderno',
+    component: () => import(/* webpackChunkName: "contato" */ '../views/CadernosView.vue')
+  },
+  {
+    path: '/portacaneta',
+    name: 'portacaneta',
+    component: () => import(/* webpackChunkName: "contato" */ '../views/PortaCanetaView.vue')
   }
+
+
+
+
 ]
 
 const router = createRouter({
