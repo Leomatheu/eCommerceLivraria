@@ -31,8 +31,12 @@ const routes = [
     path: '/portacaneta',
     name: 'portacaneta',
     component: () => import(/* webpackChunkName: "contato" */ '../views/PortaCanetaView.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "contato" */ '../views/LoginView.vue')
   }
-
 
 
 

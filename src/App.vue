@@ -30,4 +30,10 @@
     background-color: #F9DAFA;
   } 
 
+.margins {
+    width: 60%;
+    margin-top: 0.5%;
+    height: -10%;
+}
+
 </style>

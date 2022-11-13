@@ -32,7 +32,7 @@
                     <button class="btn btn-info" type="button">Buscar</button>                    
                 </form>
                 <span>
-                    <button class="btn btn-info" type="button"><span class="icon"><i class="fa fa-user"></i></span></button>
+                    <button class="btn btn-info"><a href="/login" class="cadastro">Cadastro</a></button>
                 </span>
                 
                 </div>
@@ -45,7 +45,13 @@
     export default {
         name : 'headerComponente',
 
-        props : ["logoTipo", "alt"]
+        props : ["logoTipo", "alt"],
+
+        methods : {
+            idRouter(){
+                VueRouter.push({name : 'login'})
+            }
+        }
     }
 
 </script>
@@ -84,5 +90,10 @@
 .margem{
     display: flex;
     justify-content: center;
+}
+.cadastro {
+    text-decoration: none ;
+    color: black;    
+    padding-right: 5%;
 }
 </style>
