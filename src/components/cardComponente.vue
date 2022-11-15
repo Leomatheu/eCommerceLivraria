@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <div class="card card" style="width:315px"> <!--vfor entra nessa linha pra repetir a renderização dos cards-->
-        <img class="foto card-img-top" src="https://31750.cdn.simplo7.net/static/31750/sku/papelaria-canetas-caneta-cis-spiro-unidade--p-1547826712518.jpg" alt="Card image">
+        <img class="foto card-img-top" :src="pFoto" alt="Card image">
         <div class="cardDesc card-body"> 
           <h4 class="titulo card-title">{{ pNome }}</h4>
           <p class="card-text">{{ pDescricao }}</p>
@@ -9,7 +9,11 @@
             <h3>R$ {{ transforma(pValor) }}</h3>
             <p class="unidade">unidade</p>
           </div>
-          <a href="#" class="btn btn-success">Comprar</a>
+          <div class="botoes">
+            <a href="#" class="botoes btn btn-info">Comprar</a>
+            <button type="button" class="btn btn-outline-primary"><a href="/detalheproduto">Ver detalhes</a></button>
+          </div>
+
         </div>
       </div>
     </div>
@@ -30,7 +34,8 @@
             transforma (valor) {
                 return String(valor)
             }
-        }
+        },
+        
     }
 
 </script>
@@ -65,11 +70,20 @@
     display: flex;
     justify-content: space-evenly;
     padding-top: 1%;
-    padding-bottom: 3%;
+    padding-bottom: 5%;
 }
 
 .unidade{
     display: flex;
     align-self: auto
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-around;
+}
+
+a{
+    text-decoration: none;
 }
 </style>
