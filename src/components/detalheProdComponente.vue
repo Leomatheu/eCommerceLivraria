@@ -22,6 +22,7 @@ export default {
     data () {
         return {
             produto : [{
+                id : 1,
                 src : "https://31750.cdn.simplo7.net/static/31750/sku/papelaria-canetas-caneta-cis-spiro-unidade--p-1547826712518.jpg",
                 alt : "Foto descritiva produto",
                 nome : "Canetas Bic Coloridas",
@@ -29,7 +30,14 @@ export default {
                 preco : "1.55"
             }],
         }
-    },     
+    }, 
+    
+    mounted(){
+        const id = this.$route.params.id
+        if(id){
+
+        }
+    }
 }
 </script>
 

@@ -1,21 +1,25 @@
 <template>
     <div class="container">
-      <div class="card card" style="width:315px"> <!--vfor entra nessa linha pra repetir a renderização dos cards-->
-        <img class="foto card-img-top" :src="pFoto" alt="Card image">
-        <div class="cardDesc card-body"> 
-          <h4 class="titulo card-title">{{ pNome }}</h4>
-          <p class="card-text">{{ pDescricao }}</p>
-          <div class="preco">
-            <h3>R$ {{ transforma(pValor) }}</h3>
-            <p class="unidade">unidade</p>
-          </div>
-          <div class="botoes">
-            <a href="#" class="botoes btn btn-info">Comprar</a>
-            <button type="button" class="btn btn-outline-primary"><a href="/detalheproduto">Ver detalhes</a></button>
-          </div>
+        <div class='row'>
+            <div class='col-sm-3'>
+                <div class="cartao card" style="width:315px"> <!--vfor entra nessa linha pra repetir a renderização dos cards-->
+                    <img class="foto card-img-top" :src="pFoto" alt="Card image">
+                    <div class="cardDesc card-body"> 
+                    <h4 class="titulo card-title">{{ pNome }}</h4>
+                    <p class="card-text">{{ pDescricao }}</p>
+                    <div class="preco">
+                        <h3>R$ {{ transforma(pValor) }}</h3>
+                        <p class="unidade">unidade</p>
+                    </div>
+                    <div class="botoes">
+                        <a href="#" class="botoes btn btn-info">Comprar</a>
+                        <button type="button" class="btn btn-outline-primary" @click="detalhes(pId)">Detalhes</button>
+                    </div>
 
-        </div>
-      </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
     </div>
 </template>
 
@@ -27,12 +31,17 @@
             pFoto : String,
             pNome : String,
             pDescricao : String,
-            pValor : Number
+            pValor : Number,
+            pId : Number
         },
 
         methods : {
             transforma (valor) {
                 return String(valor)
+            },
+            
+            detalhes(Id) {
+                this.$router.push(`/detalheproduto/${Id}`)
             }
         },
         
@@ -45,7 +54,7 @@
     background-color: #F9DAFA;
 }
 
-.card{
+.cartao{
     border-style: solid;
     border-width: 3px;
     border-color: #DE94A9;
@@ -60,7 +69,7 @@
 
 .titulo {
     text-align: center;
-    text-shadow: 2px 2px 5px lightskyblue;
+    text-shadow: 2px 2px 5px 1236;
 }
 
 .preco {
