@@ -1,8 +1,10 @@
 
 <template>
-  <headerComponente :logoTipo="fotoLogo" :alt="appName"/>
-  <router-view/>
-  <footerComponente/>
+  <header><headerComponente :logoTipo="fotoLogo" :alt="appName"/></header>
+
+  <body><router-view/></body>
+
+  <footer><footerComponente/></footer>
 </template>
 
 <script>

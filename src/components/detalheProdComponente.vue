@@ -35,7 +35,7 @@ export default {
     mounted(){
         const id = this.$route.params.id
         if(id){
-
+            console.log(id)
         }
     }
 }

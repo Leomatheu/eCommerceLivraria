@@ -1,5 +1,5 @@
 <template>
-  <div class="margins">
+  <div>
      <cardComponente :pFoto="foto" :pNome="nomeProduto" :pDescricao="descricaoProduto" :pValor="valor" :pId="id"/>
   </div>
 </template>

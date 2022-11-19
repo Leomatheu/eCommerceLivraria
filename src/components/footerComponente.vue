@@ -1,8 +1,6 @@
 <template>
 <footer class="footer text-center text-white" style="background-color: #AAECFA;">
-  <!-- Grid container -->
   <div class="container pt-4">
-    <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
       <a
@@ -54,11 +52,11 @@
 </script>
 
 <style scoped>
-    body {
+    /* body {
         margin-top: 5%;
         border-top-style: solid;
         border-top-color: #DE94A9;
-    }
+    } */
 
     .footer{
         border-style: solid;

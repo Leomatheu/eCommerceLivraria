@@ -32,7 +32,7 @@
                     <button class="btn btn-info" type="button">Buscar</button>                    
                 </form>
                 <span>
-                    <button class="btn btn-info"><a href="/login" class="cadastro">Cadastro</a></button>
+                    <button class="btn btn-info"><a href="/login" class="cadastro">Login</a></button>
                 </span>
                 
                 </div>
