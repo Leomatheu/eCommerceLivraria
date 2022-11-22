@@ -1,7 +1,7 @@
 <template>
     <div class="div-pai">
         <div class="foto">
-            <img class="float-end" src="https://31750.cdn.simplo7.net/static/31750/sku/papelaria-canetas-caneta-cis-spiro-unidade--p-1547826712518.jpg" alt="New York" style="width:550px">
+            <img class="float-end" src="https://picsum.photos/400/400" alt="New York" style="width:550px">
         </div>
         <div class="div-pai-conteudo">
                 <h1 class="nome">{{ "Canetas Bic Coloridas" }}</h1>

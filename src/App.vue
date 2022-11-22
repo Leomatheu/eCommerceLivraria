@@ -38,4 +38,11 @@
     height: -10%;
 }
 
+.alinhamentoCard{
+  flex : 1 0 21%; 
+  margin-top : 10px;
+  margin-left : 30px;
+  margin-bottom : 5px
+}
+
 </style>

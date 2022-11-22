@@ -52,11 +52,11 @@
 </script>
 
 <style scoped>
-    /* body {
+    body {
         margin-top: 5%;
         border-top-style: solid;
         border-top-color: #DE94A9;
-    } */
+    }
 
     .footer{
         border-style: solid;

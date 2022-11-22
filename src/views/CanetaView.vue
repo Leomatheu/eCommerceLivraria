@@ -1,7 +1,9 @@
 <template>
-  <div v-for="(item, index) in itens" :key="index"> 
-     <cardComponente :pFoto="itens.foto" :pNome="itens.nomeProduto" :pDescricao="itens.descricaoProduto" :pValor="itens.valor" :pId="itens.id"/>
-  </div>
+  <div class="d-flex flex-wrap">
+    <div v-for="(item, index) in itens" :key="index" class="alinhamentoCard"> 
+      <cardComponente :pFoto="itens.foto" :pNome="itens.nomeProduto" :pDescricao="itens.descricaoProduto" :pValor="itens.valor" :pId="itens.id"/>
+    </div>
+</div>
 </template>
 
 <script>
