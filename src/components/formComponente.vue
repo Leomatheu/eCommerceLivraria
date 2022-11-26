@@ -1,6 +1,7 @@
 <template>
+    <!-- componente de cadastro de usuário -->
     <div class="div-pai">        
-        <form action="/action_page.php">
+        <form action="">
             <div>        
                 <h3>Dados pessoais</h3>
             

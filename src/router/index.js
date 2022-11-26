@@ -41,10 +41,12 @@ const routes = [
     path: '/detalheproduto/:id',
     name: 'detalheproduto',
     component: () => import(/* webpackChunkName: "contato" */ '../views/DetalheView.vue')
-  }
-
-
-
+  },
+  {
+    path: '/carrinho/:id',
+    name: 'carrinho',
+    component: () => import(/* webpackChunkName: "contato" */ '../views/CarrinhoView.vue')
+  },
 ]
 
 const router = createRouter({

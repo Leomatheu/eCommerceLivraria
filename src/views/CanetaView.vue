@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-wrap">
     <div v-for="(item, index) in itens" :key="index" class="alinhamentoCard"> 
-      <cardComponente :pFoto="itens.foto" :pNome="itens.nomeProduto" :pDescricao="itens.descricaoProduto" :pValor="itens.valor" :pId="itens.id"/>
+      <cardComponente :pFoto="item.foto" :pNome="item.nomeProduto" :pDescricao="item.descricaoProduto" :pValor="item.valor" :pId="item.id"/>
     </div>
 </div>
 </template>
@@ -17,26 +17,90 @@
     data () {
       return {
         itens : [{
-          foto : "https://31750.cdn.simplo7.net/static/31750/sku/papelaria-canetas-caneta-cis-spiro-unidade--p-1547826712518.jpg",
+          foto : "https://picsum.photos/400/400",
           nomeProduto : "Canetas Bic Coloridas",
           descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
           valor : 1.55,
           id : 2
         },
         {
-          foto : "https://31750.cdn.simplo7.net/static/31750/sku/papelaria-canetas-caneta-cis-spiro-unidade--p-1547826712518.jpg",
+          foto : "https://picsum.photos/400/400",
           nomeProduto : "Canetas Bic Coloridas",
           descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
           valor : 1.55,
           id : 3
         },
         {        
-          foto : "https://31750.cdn.simplo7.net/static/31750/sku/papelaria-canetas-caneta-cis-spiro-unidade--p-1547826712518.jpg",
+          foto : "https://picsum.photos/400/400",
           nomeProduto : "Canetas Bic Coloridas",
           descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
           valor : 1.55,
           id : 4
-        }]
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 5
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 6
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 7
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 8
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 9
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 10
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 4
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 4
+        },
+        {        
+          foto : "https://picsum.photos/400/400",
+          nomeProduto : "Canetas Bic Coloridas",
+          descricaoProduto : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
+          valor : 1.55,
+          id : 4
+        }
+      ]
 
       }
     }

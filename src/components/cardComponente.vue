@@ -1,17 +1,24 @@
 <template>
 <div>
+    <!-- componente do cartão dos itens apresentados nas rotas -->
     <div class="cartao card" style="width:315px"> 
-        <img class="foto card-img-top" :src="pFoto" alt="Card image">
+        <!-- foto do item -->
+        <img class="foto card-img-top" :src="pFoto" alt="Card image"> 
+
         <div class="cardDesc card-body"> 
+            <!-- título do card -->
             <h4 class="titulo card-title">{{ pNome }}</h4>
+            <!-- descrição do item -->
             <p class="card-text">{{ pDescricao }}</p>
+            <!-- preço do item -->
             <div class="preco">
                 <h3>R$ {{ transforma(pValor) }}</h3>
                 <p class="unidade">unidade</p>
             </div>
+            <!-- botões de adicionar ao carrinho e detalhes do item -->
             <div class="botoes">
-                <a href="#" class="botoes btn btn-info">Comprar</a>
-                <button type="button" class="btn btn-outline-primary" @click="detalhes(pId)">Detalhes</button>
+                <a href="#" class="botoes btn btn-info" @click.prevent="adicionaCart(pId)">Adicionar ao carrinho</a>
+                <button type="button" class="btn btn-outline-primary" @click.prevent="detalhes(pId)">Detalhes</button>
             </div>
         </div>
     </div>
@@ -30,6 +37,10 @@
             pId : Number
         },
 
+        data () {
+            cart : []
+        },
+
         methods : {
             transforma (valor) {
                 return String(valor)
@@ -37,6 +48,10 @@
             
             detalhes(Id) {
                 this.$router.push(`/detalheproduto/${Id}`)
+            },
+
+            adicionaCart (id) {
+                this.$router.push(`/carrinho/${id}`)
             }
         },
         

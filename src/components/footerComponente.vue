@@ -1,4 +1,5 @@
 <template>
+  <!-- componente footer -->
 <footer class="footer text-center text-white" style="background-color: #AAECFA;">
   <div class="container pt-4">
     <section class="mb-4">
