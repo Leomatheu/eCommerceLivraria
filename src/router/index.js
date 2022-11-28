@@ -8,9 +8,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/contato',
-    name: 'contato',
-    component: () => import(/* webpackChunkName: "contato" */ '../views/ContatoView.vue')
+    path: '/facaseucadastro',
+    name: 'facaseucadastro',
+    component: () => import(/* webpackChunkName: "contato" */ '../views/CadastroView.vue')
   },
   {
     path: '/caneta',

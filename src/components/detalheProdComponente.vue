@@ -12,7 +12,7 @@
             <br>
             <h2>R$ 1,55</h2>
             <br>
-            <button type="button" class="btn btn-info btn-lg">Comprar</button>
+            <button type="button" class="btn btn-info btn-lg">Adicionar ao carrinho</button>
         </div>
     </div>
 </template>
@@ -34,6 +34,7 @@ export default {
     
     mounted(){
         const id = this.$route.params.id
+        
         if(id){
             console.log(id)
         }
