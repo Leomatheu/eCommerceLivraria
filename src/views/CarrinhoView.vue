@@ -1,7 +1,8 @@
 <template>
     <!-- for que repete o componente do carrinho de compras -->
     <div class="d-flex flex-wrap" v-for="(item, index) in itens" :key="index">
-        <carrinhoProdComponente :pId="item.id" :pFoto = item.foto :pNome = item.nome :pDescricao = item.descricao :pValor="item.valor"/>
+        <carrinhoProdComponente :pId="item.id" :pFoto = item.foto :pNome = item.nome :pDescricao = item.descricao :pValor="item.valor"
+        @excluirItemLista="excluirItemLista"/>
     </div>  
 
     <!-- botões para fechar a compra ou voltar para continuar comprando -->
@@ -42,6 +43,20 @@
         methods :{
             voltar(){
                 this.$router.go(-1)
+            },
+
+            adicionaItem(item) {
+                if (!this.itens == []) {
+                    const item = localStorage.getItem("item", item)
+
+                    this.itens.push(item)
+                }
+                
+            },
+
+            excluirItemLista(id){
+
+                console.log(id)
             }
         }
 

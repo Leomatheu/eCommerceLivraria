@@ -51,6 +51,16 @@
             },
 
             adicionaCart (id) {
+                const item = {
+                    id : this.pId,
+                    nome : this.pNome,
+                    descricao : this.pDescricao,
+                    valor : this.pValor,
+                    foto : this.pFoto
+                }
+
+                localStorage.setItem("item", item)
+
                 this.$router.push(`/carrinho/${id}`)
             }
         },

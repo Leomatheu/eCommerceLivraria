@@ -46,6 +46,7 @@ const routes = [
     path: '/carrinho/:id',
     name: 'carrinho',
     component: () => import(/* webpackChunkName: "contato" */ '../views/CarrinhoView.vue')
+    
   },
 ]
 
