@@ -59,7 +59,23 @@
                     foto : this.pFoto
                 }
 
-                localStorage.setItem("item", item)
+                
+
+                if (localStorage.getItem("item") == null) {
+                    localStorage.setItem("item",JSON.stringify(item))
+                    console.log("adicionou o primeiro")
+                }
+                else{
+                     let newData = localStorage.getItem("item")
+                     let itemJson = JSON.parse(newData)
+                     itemJson.push(item)
+
+                    localStorage.setItem("item",JSON.stringify(itemJson))
+                    
+                }
+
+                
+                
 
                 this.$router.push(`/carrinho/${id}`)
             }

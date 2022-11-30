@@ -20,23 +20,7 @@
 
         data () {
             return {
-                itens : [
-                    {
-                        id : 1,
-                        foto : "https://picsum.photos/400/400",
-                        nome : "Caneta Bic Colorida",
-                        descricao : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
-                        valor : 2.00
-                    },
-                    {
-                        id : 2,
-                        foto : "https://picsum.photos/400/400",
-                        nome : "Caneta Bic Colorida",
-                        descricao : "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.",
-                        valor : 3.00
-                    },
-  
-                ]
+                itens : [JSON.parse(localStorage.getItem("item"))]
             }
         },
 
@@ -45,25 +29,20 @@
                 this.$router.go(-1)
             },
 
-            adicionaItem(item) {
-                if (!this.itens == []) {
-                    const item = localStorage.getItem("item", item)
-
-                    this.itens.push(item)
-                }
-                
-            },
-
             excluirItemLista(id){
 
                 console.log(id)
             }
-        }
+        },
 
-        // mounted :{
-        //     MontaCarrinho(id, foto, nome, descricao, valor) {
-        //         this.itens.push(1, "https://picsum.photos/400/400", "Caneta Bic Colorida", "Lorem ipsum per etiam feugiat pharetra pellentesque, vel tristique quisque conubia ornare, consectetur habitant metus molestie lacinia.", 1.98)
+        // mounted : {
+
+        //     montaCarrinho () {
+        //         let newData = localStorage.getItem("item")
+        //         let itemJson = JSON.parse(newData)
+        //         this.itens.push(itemJson)
         //     }
+            
         // }
     }
 
