@@ -2,8 +2,14 @@
     <!-- for que repete o componente do carrinho de compras -->
     <div class="d-flex flex-wrap" v-for="(item, index) in itens" :key="index">
         <carrinhoProdComponente :pId="item.id" :pFoto = item.foto :pNome = item.nome :pDescricao = item.descricao :pValor="item.valor"
-        @excluirItemLista="excluirItemLista"/>
+        @excluirItemLista="excluirItemLista" @totalValue="refreshTotal"/>
     </div>  
+
+    <div>
+        <h1>{{ this.total }}</h1>
+        <h5>teste</h5>
+
+    </div>
 
     <!-- botões para fechar a compra ou voltar para continuar comprando -->
     <div class="div-botoes">
@@ -20,7 +26,9 @@
 
         data () {
             return {
-                itens : [JSON.parse(localStorage.getItem("item"))]
+                itens : JSON.parse(localStorage.getItem("cart")),
+
+                totalGeral : null
             }
         },
 
@@ -30,20 +38,24 @@
             },
 
             excluirItemLista(id){
+                let array = this.itens.filter((item) => {return item.id != id})
 
-                console.log(id)
+                localStorage.clear                
+                localStorage.setItem("cart", JSON.stringify(array))
+
+                location.reload()
+                
+            },
+
+            refreshTotal(value){
+                let itens = JSON.parse(localStorage.getItem("cart"))
+                 
+                 itens.forEach(i => {
+                    var total = i.totalITem
+                    totalGeral(total)
+                 });
             }
         },
-
-        // mounted : {
-
-        //     montaCarrinho () {
-        //         let newData = localStorage.getItem("item")
-        //         let itemJson = JSON.parse(newData)
-        //         this.itens.push(itemJson)
-        //     }
-            
-        // }
     }
 
 </script>

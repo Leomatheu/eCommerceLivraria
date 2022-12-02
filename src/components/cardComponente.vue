@@ -1,4 +1,4 @@
-<template>
+<template> 
 <div>
     <!-- componente do cartão dos itens apresentados nas rotas -->
     <div class="cartao card" style="width:315px"> 
@@ -15,9 +15,10 @@
                 <h3>R$ {{ transforma(pValor) }}</h3>
                 <p class="unidade">unidade</p>
             </div>
+
             <!-- botões de adicionar ao carrinho e detalhes do item -->
             <div class="botoes">
-                <a href="#" class="botoes btn btn-info" @click.prevent="adicionaCart(pId)">Adicionar ao carrinho</a>
+                <a href="#" class="botoes btn btn-info" @click.prevent="adicionaCart()" v-show="!this.add">Adicionar ao carrinho</a>           
                 <button type="button" class="btn btn-outline-primary" @click.prevent="detalhes(pId)">Detalhes</button>
             </div>
         </div>
@@ -38,7 +39,9 @@
         },
 
         data () {
-            cart : []
+            return {
+                add : false
+            }
         },
 
         methods : {
@@ -50,34 +53,34 @@
                 this.$router.push(`/detalheproduto/${Id}`)
             },
 
-            adicionaCart (id) {
+            adicionaCart () {
                 const item = {
                     id : this.pId,
                     nome : this.pNome,
                     descricao : this.pDescricao,
                     valor : this.pValor,
-                    foto : this.pFoto
+                    foto : this.pFoto,
+                    quantidade : null,
+                    totalITem : null
                 }
 
-                
+                let lista = []
 
-                if (localStorage.getItem("item") == null) {
-                    localStorage.setItem("item",JSON.stringify(item))
-                    console.log("adicionou o primeiro")
+                lista.push(item)
+
+                if (localStorage.getItem("cart") == null) {
+                    localStorage.setItem("cart",JSON.stringify(lista))
                 }
                 else{
-                     let newData = localStorage.getItem("item")
-                     let itemJson = JSON.parse(newData)
-                     itemJson.push(item)
-
-                    localStorage.setItem("item",JSON.stringify(itemJson))
+                    let newData = JSON.parse(localStorage.getItem("cart"))
+                    newData.push(item)
+                     
+                    localStorage.setItem("cart",JSON.stringify(newData))
                     
                 }
 
-                
-                
-
-                this.$router.push(`/carrinho/${id}`)
+                this.$emit('addCartSuccess', true)
+                this.add = !this.add
             }
         },
         

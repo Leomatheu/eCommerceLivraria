@@ -7,28 +7,28 @@
             
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Nome:</h5>
-                    <input type="text" class="form-control" id="nome" placeholder="Insira seu nome">
+                    <input type="text" class="form-control" id="nome" placeholder="Insira seu nome" v-model="name">
                 </div>
 
                 <div class="edits-nascimento mb-3">
                     <h5 class="form-label">Data nascimento:</h5>
-                    <input type="date" class="form-control" id="dtnascimento">
+                    <input type="date" class="form-control" id="dtnascimento" v-model="born">
                 </div>
 
                 <div class="edits-nascimento mb-3">
                     <h5 class="form-label">CPF:</h5>
-                    <input type="text" class="form-control" id="cpf">
+                    <input type="text" class="form-control" id="cpf" v-model="cpf">
                 </div>
 
                 <div>
                     <h5 class="form-label">Gênero:</h5><br>
                     <div Class="radioButon-pai">
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1">Masculino
+                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="masculino" v-model="sexo">Masculino
                             <label class="form-check-label"></label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1">Feminino
+                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="feminino" v-model="sexo">Feminino
                             <label class="form-check-label"></label>
                         </div>            
                     </div>
@@ -36,12 +36,12 @@
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Email:</h5>
-                    <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail">
+                    <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail" v-model="email">
                 </div>
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Telefone:</h5>
-                    <input type="tel" class="form-control" id="telefone" placeholder="Insira seu telefone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                    <input type="tel" class="form-control" id="telefone" placeholder="Insira seu telefone" v-model="phone">
                 </div>
             </div>
             <br>  
@@ -50,19 +50,19 @@
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Rua:</h5>
-                    <input type="rua" class="form-control" id="email" placeholder="Informe sua rua">
+                    <input type="rua" class="form-control" id="rua" placeholder="Informe sua rua" v-model="street">
                 </div>
 
                 <div class="edits-nascimento mb-3 mt-3">
                     <h5 class="form-label">Número:</h5>
-                    <input type="number" class="form-control" id="numero" placeholder="Informe o número de sua residência">
+                    <input type="number" class="form-control" id="numero" placeholder="Informe o número de sua residência" v-model="number">
                 </div>
 
                 <div class="edits-nascimento mb-3 mt-3">
                     <h5 class="form-label">Estado:</h5>
-                    <select id=cbPais class="form-control">
+                    <select id=cbPais class="form-control" v-model="state">
                         <option value="" >Selecione seu estado</option>
-                        <option value="AC" >AC</option>
+                        <option value="AC">AC</option>
                         <option value="AL" >AL</option>
                         <option value="AM" >AM</option>
                         <option value="BA" >BA</option>
@@ -92,27 +92,27 @@
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Cidade:</h5>
-                    <input type="text" class="form-control" id="cidade" placeholder="Insira sua cidade">
+                    <input type="text" class="form-control" id="cidade" placeholder="Insira sua cidade" v-model="city">
                 </div>
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Bairro:</h5>
-                    <input type="text" class="form-control" id="bairro" placeholder="Insira seu bairro">
+                    <input type="text" class="form-control" id="bairro" placeholder="Insira seu bairro" v-model="neighborhood">
                 </div>
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Complemento:</h5>
-                    <input type="text" class="form-control" id="complemento" placeholder="Ex. apartamento 0 bloco a">
+                    <input type="text" class="form-control" id="complemento" placeholder="Ex. apartamento 0 bloco a" v-model="complement">
                 </div>
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">CEP:</h5>
-                    <input type="text" class="form-control" id="cep" placeholder="Informe o cep de sua residência">
+                    <input type="text" class="form-control" id="cep" placeholder="Informe o cep de sua residência" v-model="cep">
                 </div>
 
             </div>
             <br>
-            <button type="submit" class="btn btn-primary">Salvar dados</button>
+            <button type="submit" class="btn btn-primary" @click.prevent="addPerson()">Salvar dados</button>
         </form>        
     </div>
     
@@ -120,7 +120,52 @@
 </template>
 
 <script>
+export default {
+ 
+    data () {
+        return {
+            name : null,
+            born : null,
+            cpf : null,
+            sexo : null,
+            email : null,
+            phone : null,
+            street : null,
+            number : null,
+            state : null,
+            city : null,
+            neighborhood : null,
+            complement : null,
+            cep : null
+        }
+    },
 
+    methods : {
+        addPerson(){
+            let person = [
+                this.name,
+                this.born,
+                this.sexo,
+                this.cpf,
+                this.email,
+                this.phone
+            ]
+
+            let adress = [
+                this.street,
+                this.number,
+                this.state,
+                this.city,
+                this.neighborhood,
+                this.complement,
+                this.cep
+            ]
+
+            console.log(person)
+            console.log(adress)
+        }
+    }
+}
 
 </script>
 

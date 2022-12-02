@@ -45,4 +45,9 @@
   margin-bottom : 5px
 }
 
+.marginsAlerts{
+  margin-top: 0.5%;
+  margin-right: 1%;
+  margin-left: 1%;
+}
 </style>
