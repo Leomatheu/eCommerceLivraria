@@ -46,8 +46,8 @@
 
                         <!-- divisão com o subtotal e o valor unitário do produto -->
                         <div>
-                            <small class="text-secondary">Valor produto : {{pValor}}</small><br>
-                            <span class="text-dark">Total item: {{ totalItem }}</span>
+                            <small class="text-secondary">Valor produto : {{formatNumber(pValor)}}</small><br>
+                            <span class="text-dark">Total item: {{ formatNumber(totalItem) }}</span>
                         </div>
                     </div>
                 </div>
@@ -64,9 +64,7 @@
         data () {
             return {
                 quantidade : 1,
-                totalItem : null
-
-               
+                totalItem : null  
             }
         },
 
@@ -116,7 +114,17 @@
  
                  localStorage.clear
                  localStorage.setItem("cart", JSON.stringify(itens))
-            }
+            },
+
+            formatNumber(value){
+                return Intl.NumberFormat('PT-BR', { style: 'currency', currency: 'BRL' }).format(value)  
+            },
+
+            
+        },
+
+        mounted () {
+            this.totalItem = this.pValor
         }
     }
 

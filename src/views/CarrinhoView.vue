@@ -6,7 +6,7 @@
     </div>  
 
     <div>
-        <h1>{{ this.total }}</h1>
+        <h1>{{refreshTotal()}}</h1>
         <h5>teste</h5>
 
     </div>
@@ -28,7 +28,7 @@
             return {
                 itens : JSON.parse(localStorage.getItem("cart")),
 
-                totalGeral : null
+                totalGeral : 0
             }
         },
 
@@ -46,16 +46,7 @@
                 location.reload()
                 
             },
-
-            refreshTotal(value){
-                let itens = JSON.parse(localStorage.getItem("cart"))
-                 
-                 itens.forEach(i => {
-                    var total = i.totalITem
-                    totalGeral(total)
-                 });
-            }
-        },
+        }
     }
 
 </script>

@@ -7,12 +7,12 @@
 
         <div class="cardDesc card-body"> 
             <!-- título do card -->
-            <h4 class="titulo card-title">{{ pNome }}</h4>
+            <h5 class="titulo card-title">{{ pNome }}</h5>
             <!-- descrição do item -->
             <p class="card-text">{{ pDescricao }}</p>
             <!-- preço do item -->
             <div class="preco">
-                <h3>R$ {{ transforma(pValor) }}</h3>
+                <h3>{{ transforma(pValor)}}</h3>
                 <p class="unidade">unidade</p>
             </div>
 
@@ -46,7 +46,7 @@
 
         methods : {
             transforma (valor) {
-                return String(valor)
+                return Intl.NumberFormat('PT-BR', { style: 'currency', currency: 'BRL' }).format(valor)                
             },
             
             detalhes(Id) {
@@ -101,9 +101,8 @@
 }
 
 .titulo {
+    margin-bottom: 15px;
     text-align: center;
-    border-bottom-style: solid;
-    border-width: 1.5px;
     text-shadow: 2px 2px 5px lightskyblue;
 }
 
@@ -125,8 +124,6 @@
 .botoes {
     display: flex;
     justify-content: space-around;
-    border-top-style: solid;
-    border-width: 1.5px;
     padding-top: 3%;
     padding-bottom: 0%;
 }

@@ -54,19 +54,18 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name : 'loginComponente',
 
     data () {
         return {
+            pessoa :[],
+
             //variáveis que recebem os valores do campo
             email : null,
             senha : null,
-
-            //variáveis que são recuperadas do banco
-            nomeData : "Leonardo",
-            emailData : "leonardo@teste.com",
-            senhaData : "leo013595",
 
             //variáveis de validação dos alerts
             logado : false,
@@ -76,10 +75,13 @@ export default {
 
     methods : {
         validaAcesso () {
-            if ((this.senha == this.senhaData)&&(this.email == this.emailData)){
+
+            if ((this.senha == this.pessoa.senha)&&(this.email == this.pessoa.email)){
                 this.logado = !this.logado
                 this.senha = null
                 this.email = null
+
+                localStorage.setItem("logado", JSON.stringify(pessoa))
             }
             else{
                 this.naoLogado = !this.naoLogado
@@ -87,6 +89,7 @@ export default {
                 this.email = null
             }
         },
+
 
         formCadastro(){
             this.$router.push(`/facaseucadastro`)
@@ -99,7 +102,14 @@ export default {
         fechaAlertDanger() {
             this.naoLogado = !this.naoLogado
         }
-    }
+    },
+
+    mounted () {
+    axios
+    .get('http://localhost:8080/cliente/cliente-email/'+this.email)
+    .then(resp => this.itens = resp.data)
+
+  },
 }
 
 </script>
