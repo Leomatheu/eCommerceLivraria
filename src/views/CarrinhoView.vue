@@ -6,7 +6,7 @@
     </div>  
 
     <div>
-        <h1>{{refreshTotal()}}</h1>
+        <h1>Valor total da compra</h1>
         <h5>teste</h5>
 
     </div>

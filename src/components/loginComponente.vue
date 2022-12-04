@@ -61,7 +61,7 @@ export default {
 
     data () {
         return {
-            pessoa :[],
+            pessoa : [],
 
             //variáveis que recebem os valores do campo
             email : null,
@@ -75,18 +75,21 @@ export default {
 
     methods : {
         validaAcesso () {
+            if (!this.pessoa == []){
 
-            if ((this.senha == this.pessoa.senha)&&(this.email == this.pessoa.email)){
-                this.logado = !this.logado
-                this.senha = null
-                this.email = null
-
-                localStorage.setItem("logado", JSON.stringify(pessoa))
-            }
-            else{
-                this.naoLogado = !this.naoLogado
-                this.senha = null
-                this.email = null
+                    this.pessoa.map(p => {
+                        if (p.email == this.email) {
+                            this.logado = !this.logado
+                            this.senha = null
+                            this.email = null                        
+                            localStorage.setItem("logado", JSON.stringify(this.pessoa))
+                        }
+                        else {
+                            this.naoLogado = !this.naoLogado
+                            this.senha = null
+                            this.email = null
+                        }
+                    });
             }
         },
 
@@ -105,11 +108,10 @@ export default {
     },
 
     mounted () {
-    axios
-    .get('http://localhost:8080/cliente/cliente-email/'+this.email)
-    .then(resp => this.itens = resp.data)
-
-  },
+        axios
+        .get('http://localhost:8080/cliente')
+        .then(resp => this.pessoa = resp.data)
+    },
 }
 
 </script>
