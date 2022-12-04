@@ -47,7 +47,7 @@
                         <!-- divisão com o subtotal e o valor unitário do produto -->
                         <div>
                             <small class="text-secondary">Valor produto : {{formatNumber(pValor)}}</small><br>
-                            <span class="text-dark">Total item: {{ formatNumber(totalItem) }}</span>
+                            <span class="text-dark">Total item: {{ formatNumber(this.totalItem) }}</span>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,6 @@
             return {
                 quantidade : 1,
                 totalItem : null,  
-                soma : false
             }
         },
 
@@ -81,13 +80,13 @@
             diminuiQuantidade (id) {
                 --this.quantidade   
                 this.refreshLocalStorage(id)
-                this.$emit('atualizaTotal', id, soma = false)
+                this.$emit('atualizaTotal')
             },
 
             aumentaQuantidade (id) {
                 ++this.quantidade
                 this.refreshLocalStorage(id)
-                this.$emit('atualizaTotal', id, soma = true)
+                this.$emit('atualizaTotal')
             },
 
             habilitaReducaoItens(){
@@ -127,7 +126,21 @@
         },
 
         mounted () {
-            this.totalItem = this.pValor
+            let lista = JSON.parse(localStorage.getItem("cart"))
+
+            for(let i = 0; i < lista.length; i++){
+                
+                if(i + 1 == lista[i].id){
+                    this.quantidade = lista[i].quantidade
+                    this.totalItem = lista[i].totalITem
+                }
+            }
+                // lista.forEach(i => {
+                //     this.quantidade = i.quantidade
+                //     this.totalItem = i.totalITem
+                // })
+
+            
         }
     }
 

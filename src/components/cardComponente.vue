@@ -60,8 +60,8 @@
                     descricao : this.pDescricao,
                     valor : this.pValor,
                     foto : this.pFoto,
-                    quantidade : null,
-                    totalITem : null
+                    quantidade : 1,
+                    totalITem : this.pValor
                 }
 
                 let lista = []

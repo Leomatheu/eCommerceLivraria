@@ -6,9 +6,10 @@
     </div>  
 
     <div>
-        <h1>{{this.totalGeral}}</h1>
-        <h5>teste</h5>
-
+        <div  class="total-geral">
+            <h5>Total da compra</h5>
+            <h1>{{this.totalGeral}}</h1>
+        </div>
     </div>
 
     <!-- botões para fechar a compra ou voltar para continuar comprando -->
@@ -47,22 +48,15 @@
                 
             },
 
-            refreshTotalCompra(id, soma){
+            refreshTotalCompra(){
                 let lista = JSON.parse(localStorage.getItem("cart"))
-                console.log(soma)
-                
-                lista.forEach(p => {
-                    if ((p.id == id)&&(soma)){
-                        this.totalGeral = this.totalGeral + p.totalITem
-                        
-                    }
-                    else{
-                        this.totalGeral = this.totalGeral - p.totalITem
-                    }
-                });
 
-                console.log(this.totalGeral)
+                this.totalGeral = lista.reduce((acumulado, atual) => acumulado + atual.totalITem, 0)
             }
+        },
+
+        mounted(){
+            this.refreshTotalCompra()
         }
     }
 
@@ -76,5 +70,11 @@
     .botao-voltar {
         margin-left: 10px;
         width: 265px;
+    }
+
+    .total-geral{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 </style>
