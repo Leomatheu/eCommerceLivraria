@@ -2,11 +2,11 @@
     <!-- for que repete o componente do carrinho de compras -->
     <div class="d-flex flex-wrap" v-for="(item, index) in itens" :key="index">
         <carrinhoProdComponente :pId="item.id" :pFoto = item.foto :pNome = item.nome :pDescricao = item.descricao :pValor="item.valor"
-        @excluirItemLista="excluirItemLista" @totalValue="refreshTotal"/>
+        @excluirItemLista="excluirItemLista" @totalValue="refreshTotal" @atualizaTotal="refreshTotalCompra"/>
     </div>  
 
     <div>
-        <h1>Valor total da compra</h1>
+        <h1>{{this.totalGeral}}</h1>
         <h5>teste</h5>
 
     </div>
@@ -46,6 +46,23 @@
                 location.reload()
                 
             },
+
+            refreshTotalCompra(id, soma){
+                let lista = JSON.parse(localStorage.getItem("cart"))
+                console.log(soma)
+                
+                lista.forEach(p => {
+                    if ((p.id == id)&&(soma)){
+                        this.totalGeral = this.totalGeral + p.totalITem
+                        
+                    }
+                    else{
+                        this.totalGeral = this.totalGeral - p.totalITem
+                    }
+                });
+
+                console.log(this.totalGeral)
+            }
         }
     }
 

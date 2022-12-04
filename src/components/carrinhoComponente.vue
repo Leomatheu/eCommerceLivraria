@@ -64,7 +64,8 @@
         data () {
             return {
                 quantidade : 1,
-                totalItem : null  
+                totalItem : null,  
+                soma : false
             }
         },
 
@@ -80,11 +81,13 @@
             diminuiQuantidade (id) {
                 --this.quantidade   
                 this.refreshLocalStorage(id)
+                this.$emit('atualizaTotal', id, soma = false)
             },
 
             aumentaQuantidade (id) {
                 ++this.quantidade
                 this.refreshLocalStorage(id)
+                this.$emit('atualizaTotal', id, soma = true)
             },
 
             habilitaReducaoItens(){
