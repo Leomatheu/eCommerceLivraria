@@ -5,17 +5,56 @@
         @excluirItemLista="excluirItemLista" @totalValue="refreshTotal" @atualizaTotal="refreshTotalCompra"/>
     </div>  
 
+    <!-- Dados com o endereço do cliente logado -->
+    <div class="div-form-fim-compra" v-show="this.finalCompra">
+        <h4>Dados da Entrega</h4>
+        <br>
+        <div class="edits edits-nome mb-3 mt-3">
+            <h5 class="form-label">Rua:</h5>
+            <input type="rua" class="form-control" id="rua" v-model="rua">
+        </div>
+
+        <div class="edits edits-nome mb-3 mt-3">
+            <h5 class="form-label">Bairro:</h5>
+            <input type="rua" class="form-control" id="bairro" v-model="bairro">
+        </div>
+
+        <div class="numeroCep">
+            <div class="editsnumcep edits-nome mb-3 mt-3">
+                <h5 class="form-label">Número:</h5>
+                <input type="rua" class="form-control" id="numero" v-model="numero">
+            </div>
+
+            <div class="cep editsnumcep edits-nome mb-3 mt-3">
+                <h5 class="form-label">Cep:</h5>
+                <input type="rua" class="form-control" id="cep" v-model="cep">
+            </div>
+        </div>
+
+        <div class="edits edits-nome mb-3 mt-3">
+            <h5 class="form-label">Cidade:</h5>
+            <input type="rua" class="form-control" id="cidade" v-model="cidade">
+        </div>
+
+        <div class="edits edits-nome mb-3 mt-3">
+            <h5 class="form-label">Estado:</h5>
+            <input type="rua" class="form-control" id="estado" v-model="estado">
+        </div>
+
+    </div>
+
+    <!-- Total geral da compra -->
     <div>
         <div  class="total-geral">
             <h5>Total da compra</h5>
-            <h1>{{this.totalGeral}}</h1>
+            <h1>{{transforma(this.totalGeral)}}</h1>
         </div>
     </div>
 
     <!-- botões para fechar a compra ou voltar para continuar comprando -->
-    <div class="div-botoes">
+    <div class="div-botoes" v-show="!this.finalCompra">
             <button class="botao-voltar btn btn-info btn-lg" @click="voltar()">Continuar comprando</button>
-            <button class="botao-voltar btn btn-info btn-lg">Finalizar compra</button>
+            <button class="botao-voltar btn btn-info btn-lg" @click="finalizaCompra()">Finalizar compra</button>
     </div> 
 </template>
 
@@ -29,7 +68,16 @@
             return {
                 itens : JSON.parse(localStorage.getItem("cart")),
 
-                totalGeral : 0
+                totalGeral : 0,
+
+                finalCompra : false,
+
+                rua : null,
+                bairro : null,
+                cep : null,
+                cidade : null,
+                estado : null,
+                numero : null
             }
         },
 
@@ -50,8 +98,32 @@
 
             refreshTotalCompra(){
                 let lista = JSON.parse(localStorage.getItem("cart"))
-
+                
                 this.totalGeral = lista.reduce((acumulado, atual) => acumulado + atual.totalITem, 0)
+            },
+
+            transforma (valor) {
+                return Intl.NumberFormat('PT-BR', { style: 'currency', currency: 'BRL' }).format(valor)                
+            },
+
+            finalizaCompra(){
+                let clienteLogado = JSON.parse(localStorage.getItem("logado"))
+                
+                if(clienteLogado != null){
+                    clienteLogado.forEach(c => {
+                        this.finalCompra = true
+                        this.rua = c.endereco.endereco
+                        this.bairro = c.endereco.bairro
+                        this.cep = c.endereco.cep
+                        this.numero = c.endereco.numero
+                        this.cidade = c.endereco.cidade
+                        this.estado = c.endereco.estado                        
+                    });
+                    
+                }
+                else {
+                    this.$router.push(`/login`) 
+                }
             }
         },
 
@@ -76,5 +148,38 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        text-align: end;
+        margin-right: 333px;
+        margin-top: 50px;
+        padding-right: 3%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        margin-left: 500px;
+    }
+
+    .div-form-fim-compra{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 3%;
+        padding-left: 22%;
+    }
+
+    .edits{
+        width: 63%;
+    }
+
+    .numeroCep{
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .cep{
+        margin-left: 35px;
+    }
+
+    .editsnumcep{
+        width: 30%;
     }
 </style>

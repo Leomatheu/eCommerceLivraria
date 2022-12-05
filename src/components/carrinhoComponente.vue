@@ -63,7 +63,7 @@
 
         data () {
             return {
-                quantidade : 1,
+                quantidade : null,
                 totalItem : null,  
             }
         },
@@ -122,25 +122,22 @@
                 return Intl.NumberFormat('PT-BR', { style: 'currency', currency: 'BRL' }).format(value)  
             },
 
+            refreshTotalItens(){
+                let itensCart = JSON.parse(localStorage.getItem("cart"))
+            
+                    itensCart.forEach(i => {
+                        this.quantidade = i.quantidade
+                        this.totalItem = i.totalITem
+
+                })
+                
+            }
+
             
         },
 
         mounted () {
-            let lista = JSON.parse(localStorage.getItem("cart"))
-
-            for(let i = 0; i < lista.length; i++){
-                
-                if(i + 1 == lista[i].id){
-                    this.quantidade = lista[i].quantidade
-                    this.totalItem = lista[i].totalITem
-                }
-            }
-                // lista.forEach(i => {
-                //     this.quantidade = i.quantidade
-                //     this.totalItem = i.totalITem
-                // })
-
-            
+            this.refreshTotalItens()
         }
     }
 

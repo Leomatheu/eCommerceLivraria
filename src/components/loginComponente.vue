@@ -99,7 +99,8 @@ export default {
         },
 
         fechaAlertSucsess(){
-            this.logado = !this.logado          
+            this.logado = !this.logado    
+            this.$router.go(-1)      
         },
 
         fechaAlertDanger() {
