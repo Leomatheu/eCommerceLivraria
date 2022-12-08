@@ -1,7 +1,9 @@
 <template>
     <!-- for que repete o componente do carrinho de compras -->
     <div class="d-flex flex-wrap" v-for="(item, index) in itens" :key="index">
-        <carrinhoProdComponente :pId="item.id" :pFoto = item.foto :pNome = item.nome :pDescricao = item.descricao :pValor="item.valor"
+
+        <carrinhoProdComponente :pId="item.id" :pFoto = item.foto :pNome = item.nome :pDescricao = item.descricao 
+            :pValor="item.valor" :pQuantidade="item.quantidade" :pTotalItem="item.totalITem"
         @excluirItemLista="excluirItemLista" @totalValue="refreshTotal" @atualizaTotal="refreshTotalCompra"/>
     </div>  
 
@@ -48,6 +50,7 @@
         <div  class="total-geral">
             <h5>Total da compra</h5>
             <h1>{{transforma(this.totalGeral)}}</h1>
+            <!-- <button class="btn btn-info btn-lg">testes</button> -->
         </div>
     </div>
 
@@ -60,6 +63,7 @@
 
 <script>
     import carrinhoProdComponente from '@/components/carrinhoComponente.vue';
+    import axios from 'axios';
 
     export default {
         components: {carrinhoProdComponente},
@@ -77,7 +81,31 @@
                 cep : null,
                 cidade : null,
                 estado : null,
-                numero : null
+                numero : null,
+            
+
+                compra :{
+                    valor: null,
+
+                    cliente : {
+                        id : null
+                    },     
+                    
+                    // "itens": [
+                    //  {
+                    //     "quantidade": 1,
+                    //     "produto": {
+                    //     "id": 1
+                    //     }
+                    //     }
+
+                    itens : [{
+                        quantidade : null,
+                        produto : {
+                            id : null                            
+                        }
+                    }]
+                }
             }
         },
 
@@ -108,6 +136,8 @@
 
             finalizaCompra(){
                 let clienteLogado = JSON.parse(localStorage.getItem("logado"))
+                let carrinho = JSON.parse(localStorage.getItem("cart"))
+            
                 
                 if(clienteLogado != null){
                     clienteLogado.forEach(c => {
@@ -117,13 +147,27 @@
                         this.cep = c.endereco.cep
                         this.numero = c.endereco.numero
                         this.cidade = c.endereco.cidade
-                        this.estado = c.endereco.estado                        
-                    });
-                    
+                        this.estado = c.endereco.estado                         
+                        this.compra.cliente.id = c.id                      
+                    });                    
                 }
                 else {
                     this.$router.push(`/login`) 
                 }
+
+                this.compra.valor = this.totalGeral
+
+                if(carrinho != null){
+                    carrinho.forEach(c => {
+                        this.compra.itens.produto.id = c.id,
+                        this.compra.itens.produto.quantidade = c.quantidade
+                    })
+                }
+                            
+                axios
+                .post('http://localhost:8080/compra', this.compra)
+                
+
             }
         },
 

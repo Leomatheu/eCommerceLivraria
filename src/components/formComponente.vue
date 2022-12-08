@@ -136,7 +136,17 @@ export default {
             city : null,
             neighborhood : null,
             complement : null,
-            cep : null
+            cep : null,
+
+            endereco : {
+                bairro : this.neighborhood,
+                cep : this.cep,
+                cidade : this.city,
+                complemento : this.complement,
+                endereco :  this.adress,
+                estado : this.state,
+                numero : this.number
+            }
         }
     },
 

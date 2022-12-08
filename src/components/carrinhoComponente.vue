@@ -63,8 +63,9 @@
 
         data () {
             return {
-                quantidade : null,
-                totalItem : null,  
+                quantidade : this.pQuantidade,
+                totalItem : this.pTotalItem
+                 
             }
         },
 
@@ -73,7 +74,9 @@
             pFoto : String,
             pNome : String,
             pDescricao : String,
-            pValor : Number
+            pValor : Number,
+            pQuantidade: Number,
+            pTotalItem: Number
         }, 
 
         methods : {
@@ -123,13 +126,12 @@
             },
 
             refreshTotalItens(){
-                let itensCart = JSON.parse(localStorage.getItem("cart"))
+                //this.itensCart = JSON.parse(localStorage.getItem("cart"))
             
-                    itensCart.forEach(i => {
-                        this.quantidade = i.quantidade
-                        this.totalItem = i.totalITem
-
-                })
+                //itensCart.forEach(i => {
+                //        this.quantidade = i.quantidade
+                //        this.totalItem = i.totalITem
+                //})
                 
             }
 
