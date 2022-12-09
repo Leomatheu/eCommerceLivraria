@@ -82,29 +82,17 @@
                 cidade : null,
                 estado : null,
                 numero : null,
-            
+                id : 0,
+                idProduto : 0,
 
                 compra :{
-                    valor: null,
+                    valor : 0,
 
                     cliente : {
-                        id : null
-                    },     
-                    
-                    // "itens": [
-                    //  {
-                    //     "quantidade": 1,
-                    //     "produto": {
-                    //     "id": 1
-                    //     }
-                    //     }
-
-                    itens : [{
-                        quantidade : null,
-                        produto : {
-                            id : null                            
-                        }
-                    }]
+                        id : 0
+                    },
+                      
+                    itens: []
                 }
             }
         },
@@ -134,7 +122,7 @@
                 return Intl.NumberFormat('PT-BR', { style: 'currency', currency: 'BRL' }).format(valor)                
             },
 
-            finalizaCompra(){
+            async finalizaCompra(){
                 let clienteLogado = JSON.parse(localStorage.getItem("logado"))
                 let carrinho = JSON.parse(localStorage.getItem("cart"))
             
@@ -157,17 +145,16 @@
 
                 this.compra.valor = this.totalGeral
 
+                console.log(carrinho)
+
                 if(carrinho != null){
                     carrinho.forEach(c => {
-                        this.compra.itens.produto.id = c.id,
-                        this.compra.itens.produto.quantidade = c.quantidade
+                        this.compra.itens.push({'quantidade' : c.quantidade, 'produto':{ 'id': c.id}})
                     })
                 }
-                            
+
                 axios
                 .post('http://localhost:8080/compra', this.compra)
-                
-
             }
         },
 

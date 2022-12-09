@@ -24,11 +24,11 @@
                     <h5 class="form-label">Gênero:</h5><br>
                     <div Class="radioButon-pai">
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="masculino" v-model="sexo">Masculino
+                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="m" v-model="sexo">Masculino
                             <label class="form-check-label"></label>
                         </div>
                         <div class="form-check">
-                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="feminino" v-model="sexo">Feminino
+                            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="f" v-model="sexo">Feminino
                             <label class="form-check-label"></label>
                         </div>            
                     </div>
@@ -120,6 +120,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
  
     data () {
@@ -139,40 +140,58 @@ export default {
             cep : null,
 
             endereco : {
-                bairro : this.neighborhood,
-                cep : this.cep,
-                cidade : this.city,
-                complemento : this.complement,
-                endereco :  this.adress,
-                estado : this.state,
-                numero : this.number
+                bairro : '',
+                cep : '',
+                cidade : '',
+                complemento : '',
+                endereco :  '',
+                estado : '',
+                numero : ''
+            },
+
+            cliente : {
+                cpf :'',
+                dataNascimento:'',
+                email: '',
+                genero: '',
+                nome: '',
+                senha :'senha',
+                telefone :'',
+                endereco:{
+                    id : 3
+                }
+
             }
         }
     },
 
     methods : {
         addPerson(){
-            let person = [
-                this.name,
-                this.born,
-                this.sexo,
-                this.cpf,
-                this.email,
-                this.phone
-            ]
+            this.cliente.cpf = this.cpf
+            this.cliente.dataNascimento = this.born
+            this.cliente.email = this.email
+            this.cliente.genero = this.sexo
+            this.cliente.nome = this.name
+            this.cliente.telefone = this.phone 
 
-            let adress = [
-                this.street,
-                this.number,
-                this.state,
-                this.city,
-                this.neighborhood,
-                this.complement,
-                this.cep
-            ]
+            this.endereco.bairro = this.neighborhood
+            this.endereco.cep = this.cep
+            this.endereco.cidade = this.city
+            this.endereco.complemento = this.complement
+            this.endereco.endereco = this.street
+            this.endereco.estado = this.state
+            this.endereco.numero = this.number
 
-            console.log(person)
-            console.log(adress)
+            console.log(this.cliente)
+            console.log(this.endereco)
+
+            axios
+            .post('http://localhost:8080/endereco', this.endereco)
+
+            axios
+            .post('http://localhost:8080/cliente', this.cliente)
+
+       
         }
     }
 }
