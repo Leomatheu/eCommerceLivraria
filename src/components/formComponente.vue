@@ -1,23 +1,29 @@
 <template>
+            <!-- alert de não sucesso no login -->
+    <div class="alertaDeDados alert alert-danger alert-dismissible" v-show="this.faltaDados">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" @click="fechaAlertDanger()"></button>
+        <strong> Seu cadastro está incompleto, favor verifique todos os campos !</strong> 
+    </div>
+
     <!-- componente de cadastro de usuário -->
-    <div class="div-pai">        
+    <div class="div-pai" v-show="!this.cadastroFeito">        
         <form action="">
             <div>        
                 <h3>Dados pessoais</h3>
             
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Nome:</h5>
-                    <input type="text" class="form-control" id="nome" placeholder="Insira seu nome" v-model="name">
+                    <input type="text" class="form-control" id="nome" placeholder="Insira seu nome" v-model="name" required>
                 </div>
 
                 <div class="edits-nascimento mb-3">
                     <h5 class="form-label">Data nascimento:</h5>
-                    <input type="date" class="form-control" id="dtnascimento" v-model="born">
+                    <input type="date" class="form-control" id="dtnascimento" v-model="born" required>
                 </div>
 
                 <div class="edits-nascimento mb-3">
                     <h5 class="form-label">CPF:</h5>
-                    <input type="text" class="form-control" id="cpf" v-model="cpf">
+                    <input type="text" class="form-control" id="cpf" v-model="cpf" required>
                 </div>
 
                 <div>
@@ -36,12 +42,17 @@
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Email:</h5>
-                    <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail" v-model="email">
+                    <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail" v-model="email" required>
                 </div>
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Telefone:</h5>
-                    <input type="tel" class="form-control" id="telefone" placeholder="Insira seu telefone" v-model="phone">
+                    <input type="tel" class="form-control" id="telefone" placeholder="Insira seu telefone" v-model="phone" required>
+                </div>
+
+                <div class="edits-nome mb-3 mt-3">
+                    <h5 class="form-label">Senha:</h5>
+                    <input type="password" class="form-control" id="inputSenha" placeholder="Senha" v-model="senha" required>
                 </div>
             </div>
             <br>  
@@ -50,12 +61,12 @@
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Rua:</h5>
-                    <input type="rua" class="form-control" id="rua" placeholder="Informe sua rua" v-model="street">
+                    <input type="rua" class="form-control" id="rua" placeholder="Informe sua rua" v-model="street" required>
                 </div>
 
                 <div class="edits-nascimento mb-3 mt-3">
                     <h5 class="form-label">Número:</h5>
-                    <input type="number" class="form-control" id="numero" placeholder="Informe o número de sua residência" v-model="number">
+                    <input type="number" class="form-control" id="numero" placeholder="Informe o número de sua residência" v-model="number" required>
                 </div>
 
                 <div class="edits-nascimento mb-3 mt-3">
@@ -92,28 +103,35 @@
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Cidade:</h5>
-                    <input type="text" class="form-control" id="cidade" placeholder="Insira sua cidade" v-model="city">
+                    <input type="text" class="form-control" id="cidade" placeholder="Insira sua cidade" v-model="city" required>
                 </div>
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Bairro:</h5>
-                    <input type="text" class="form-control" id="bairro" placeholder="Insira seu bairro" v-model="neighborhood">
+                    <input type="text" class="form-control" id="bairro" placeholder="Insira seu bairro" v-model="neighborhood" required>
                 </div>
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">Complemento:</h5>
-                    <input type="text" class="form-control" id="complemento" placeholder="Ex. apartamento 0 bloco a" v-model="complement">
+                    <input type="text" class="form-control" id="complemento" placeholder="Ex. apartamento 0 bloco a" v-model="complement" required>
                 </div>
 
                 <div class="edits-nome mb-3 mt-3">
                     <h5 class="form-label">CEP:</h5>
-                    <input type="text" class="form-control" id="cep" placeholder="Informe o cep de sua residência" v-model="cep">
+                    <input type="text" class="form-control" id="cep" placeholder="Informe o cep de sua residência" v-model="cep" required>
                 </div>
-
             </div>
             <br>
             <button type="submit" class="btn btn-primary" @click.prevent="addPerson()">Salvar dados</button>
-        </form>        
+        </form> 
+
+    </div>
+
+    <div v-show="this.cadastroFeito" class="CadastroFeito">           
+        <h1>Cadastro realizado com sucesso !!</h1>
+
+          <!-- botão de login -->
+        <button class=" btn btn-lg btn-info" type="submit" @click.prevent="this.$router.push(`/`)">Ir para as compras !</button>
     </div>
     
 
@@ -138,6 +156,9 @@ export default {
             neighborhood : null,
             complement : null,
             cep : null,
+            senha : null,
+            cadastroFeito : false,
+            faltaDados : false,
 
             endereco : {
                 bairro : '',
@@ -155,7 +176,7 @@ export default {
                 email: '',
                 genero: '',
                 nome: '',
-                senha :'senha',
+                senha :'',
                 telefone :'',
                 endereco:{
                     id : 3
@@ -167,12 +188,14 @@ export default {
 
     methods : {
         addPerson(){
+
             this.cliente.cpf = this.cpf
             this.cliente.dataNascimento = this.born
             this.cliente.email = this.email
             this.cliente.genero = this.sexo
             this.cliente.nome = this.name
             this.cliente.telefone = this.phone 
+            this.cliente.senha = this.senha
 
             this.endereco.bairro = this.neighborhood
             this.endereco.cep = this.cep
@@ -182,16 +205,21 @@ export default {
             this.endereco.estado = this.state
             this.endereco.numero = this.number
 
-            console.log(this.cliente)
-            console.log(this.endereco)
+            if ((this.cliente.cpf != null)||(this.endereco.bairro != null)){
+                axios
+                .post('http://localhost:8080/endereco', this.endereco)
 
-            axios
-            .post('http://localhost:8080/endereco', this.endereco)
+                axios
+                .post('http://localhost:8080/cliente', this.cliente)
+                this.cadastroFeito = !this.cadastroFeito;
+            }
+            else{
+                this.faltaDados = !this.faltaDados
+            }            
+        },
 
-            axios
-            .post('http://localhost:8080/cliente', this.cliente)
-
-       
+        fechaAlertDanger(){
+            this.faltaDados = !this.faltaDados
         }
     }
 }
@@ -219,5 +247,19 @@ export default {
 .radioButton-filho{
     margin-left: 2%;
     margin-top: none;
+}
+
+.alertaDeDados {
+    margin-top: 1.5%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.CadastroFeito{
+    width: 62%;
+    text-align: center;
+    margin-left: 15%;
+    margin-top: 7%;
+    margin-bottom: 12%;
 }
 </style>

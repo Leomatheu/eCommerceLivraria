@@ -75,22 +75,30 @@ export default {
 
     methods : {
         validaAcesso () {
-            if (!this.pessoa == []){
+            console.log(this.pessoa)
 
-                    this.pessoa.map(p => {
-                        if (p.email == this.email) {
-                            this.logado = !this.logado
-                            this.senha = null
-                            this.email = null                        
-                            localStorage.setItem("logado", JSON.stringify(this.pessoa))
-                        }
-                        else {
-                            this.naoLogado = !this.naoLogado
-                            this.senha = null
-                            this.email = null
-                        }
-                    });
+            if (!this.pessoa == []){
+                 
+                console.log('passou do if')
+                this.pessoa.map(p => {
+                    
+                    if (p.email == this.email) {
+                        this.logado = !this.logado
+                        this.senha = null
+                        this.email = null                        
+                        localStorage.setItem("logado", JSON.stringify(this.pessoa))
+
+                        
+                    }
+                    else {
+                        console.log('passou do else')
+                        this.naoLogado = !this.naoLogado
+                        this.senha = null
+                        this.email = null
+                    }
+                });
             }
+
         },
 
 
